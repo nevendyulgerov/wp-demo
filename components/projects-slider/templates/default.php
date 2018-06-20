@@ -39,8 +39,8 @@ if (!$projects || count($projects) === 0) {
 				)) ?>
 
         <button
-          class="trigger go-to-next-project"
-          title="Go to next project"
+          class="trigger go-to-next-project waves-effect waves-light"
+          title="<?php echo __('View next project') ?>"
         >
           <span class="icon fa fa-long-arrow-down"></span>
         </button>

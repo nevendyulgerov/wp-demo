@@ -1,7 +1,7 @@
 /* globals symmetry, ammo, jQuery */
 
 symmetry.addNode('components', 'projects-slider', ($component) => {
-  const { isObj, selectAll, app, buffer } = ammo;
+  const { isObj, selectAll, app, buffer, scrollSpy, poll } = ammo;
   const { dispatchChangeActiveProjectIndex, interceptChangeActiveProjectIndex } = symmetry.getNode('core', 'globalEvents')();
   const $ = jQuery;
 
@@ -10,7 +10,8 @@ symmetry.addNode('components', 'projects-slider', ($component) => {
   };
   const state = {
     offsets: { type: 'array', value: [] },
-    activeProjectIndex: { type: 'number', value: 0 }
+    activeProjectIndex: { type: 'number', value: 0 },
+    isMovingToNextProject: { type: 'boolean', value: false }
   };
   const component = app(props, state).schema('component');
 
@@ -21,7 +22,9 @@ symmetry.addNode('components', 'projects-slider', ($component) => {
 
   component.configure('renderers')
     .node('animateMoveToNextProject', (scrollTop, duration = 2000, easing = 'easeInOutExpo') => {
-      $('html, body').animate({ scrollTop }, duration, easing);
+      $('html, body').animate({ scrollTop }, duration, easing, () => {
+        component.updateStore('isMovingToNextProject', () => false);
+      });
     })
     .node('goToNextProject', () => {
       const { animateMoveToNextProject } = component.getNodes('renderers');
@@ -92,6 +95,7 @@ symmetry.addNode('components', 'projects-slider', ($component) => {
       const activeFlag = 'active';
       const shrinkFlag = 'shrunk';
       const offsets = actions.getOffsets();
+      const firstProject = selectAll('.slider-item', $component).eq(0);
       component.updateStore('offsets', () => offsets);
 
       interceptChangeActiveProjectIndex(() => {
@@ -103,15 +107,43 @@ symmetry.addNode('components', 'projects-slider', ($component) => {
           if (index === activeProjectIndex || !project.classList.contains(activeFlag)) {
             return false;
           }
+
           project.classList.remove(activeFlag);
+          const projectTeamMembers = selectAll('.team-member-item', project);
+
+          projectTeamMembers.async((resolve, teamMember) => {
+            teamMember.classList.remove(activeFlag);
+            setTimeout(() => resolve(), 100);
+          });
         });
+
         activeProject.classList.add(activeFlag);
+        const activeProjectTeamMembers = selectAll('.team-member-item', activeProject);
+
+        activeProjectTeamMembers.async((resolve, teamMember) => {
+          teamMember.classList.add(activeFlag);
+          setTimeout(() => resolve(), 100);
+        });
       });
 
       const bufferScrollBefore = buffer();
       const bufferScrollAfter = buffer();
 
-      ammo.scrollSpy({
+      poll(resolve => {
+        const { activeProjectIndex } = component.getStore();
+        const canPoll = activeProjectIndex === 0;
+
+        if (canPoll) {
+          firstProject.querySelector('.trigger.go-to-next-project').classList.add(activeFlag);
+        }
+
+        setTimeout(() => {
+          firstProject.querySelector('.trigger.go-to-next-project').classList.remove(activeFlag);
+          resolve(canPoll);
+        }, 3000);
+      }, () => {}, 3000);
+
+      scrollSpy({
         offset: 100,
         initOnLoad: true,
         callbacks: {
@@ -122,8 +154,12 @@ symmetry.addNode('components', 'projects-slider', ($component) => {
             }
 
             const nextActiveProjectIndex = actions.getActiveProjectIndex(offsets, verticalScroll);
-            component.updateStore('activeProjectIndex', () => nextActiveProjectIndex);
-            bufferScrollBefore('buffered-scroll-before', 100, () => dispatchChangeActiveProjectIndex());
+            const activeProjectOffset = offsets[nextActiveProjectIndex];
+
+            bufferScrollBefore('buffered-scroll-before', 100, () => {
+              component.updateStore('activeProjectIndex', () => nextActiveProjectIndex);
+              dispatchChangeActiveProjectIndex()
+            });
           },
           onAfter: verticalScroll => {
             if (!header.classList.contains(shrinkFlag)) {
@@ -131,13 +167,18 @@ symmetry.addNode('components', 'projects-slider', ($component) => {
             }
 
             const nextActiveProjectIndex = actions.getActiveProjectIndex(offsets, verticalScroll);
+            const activeProjectOffset = offsets[nextActiveProjectIndex];
+
             component.updateStore('activeProjectIndex', () => nextActiveProjectIndex);
             bufferScrollAfter('buffered-scroll-after', 100, () => dispatchChangeActiveProjectIndex());
           }
         }
       });
 
-      events.onGoToNextProject(renderers.goToNextProject);
+      events.onGoToNextProject(() => {
+        component.updateStore('isMovingToNextProject', () => true);
+        renderers.goToNextProject();
+      });
     });
 
   component.callNode('actions', 'init');

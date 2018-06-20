@@ -10001,7 +10001,9 @@ symmetry.addNode('components', 'projects-slider', function ($component) {
       isObj = _ammo.isObj,
       selectAll = _ammo.selectAll,
       app = _ammo.app,
-      buffer = _ammo.buffer;
+      buffer = _ammo.buffer,
+      scrollSpy = _ammo.scrollSpy,
+      poll = _ammo.poll;
 
   var _symmetry$getNode = symmetry.getNode('core', 'globalEvents')(),
       dispatchChangeActiveProjectIndex = _symmetry$getNode.dispatchChangeActiveProjectIndex,
@@ -10014,7 +10016,8 @@ symmetry.addNode('components', 'projects-slider', function ($component) {
   };
   var state = {
     offsets: { type: 'array', value: [] },
-    activeProjectIndex: { type: 'number', value: 0 }
+    activeProjectIndex: { type: 'number', value: 0 },
+    isMovingToNextProject: { type: 'boolean', value: false }
   };
   var component = app(props, state).schema('component');
 
@@ -10026,7 +10029,11 @@ symmetry.addNode('components', 'projects-slider', function ($component) {
     var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2000;
     var easing = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'easeInOutExpo';
 
-    $('html, body').animate({ scrollTop: scrollTop }, duration, easing);
+    $('html, body').animate({ scrollTop: scrollTop }, duration, easing, function () {
+      component.updateStore('isMovingToNextProject', function () {
+        return false;
+      });
+    });
   }).node('goToNextProject', function () {
     var _component$getNodes = component.getNodes('renderers'),
         animateMoveToNextProject = _component$getNodes.animateMoveToNextProject;
@@ -10099,6 +10106,7 @@ symmetry.addNode('components', 'projects-slider', function ($component) {
     var activeFlag = 'active';
     var shrinkFlag = 'shrunk';
     var offsets = actions.getOffsets();
+    var firstProject = selectAll('.slider-item', $component).eq(0);
     component.updateStore('offsets', function () {
       return offsets;
     });
@@ -10114,32 +10122,68 @@ symmetry.addNode('components', 'projects-slider', function ($component) {
         if (index === activeProjectIndex || !project.classList.contains(activeFlag)) {
           return false;
         }
+
         project.classList.remove(activeFlag);
+        var projectTeamMembers = selectAll('.team-member-item', project);
+
+        projectTeamMembers.async(function (resolve, teamMember) {
+          teamMember.classList.remove(activeFlag);
+          setTimeout(function () {
+            return resolve();
+          }, 100);
+        });
       });
+
       activeProject.classList.add(activeFlag);
+      var activeProjectTeamMembers = selectAll('.team-member-item', activeProject);
+
+      activeProjectTeamMembers.async(function (resolve, teamMember) {
+        teamMember.classList.add(activeFlag);
+        setTimeout(function () {
+          return resolve();
+        }, 100);
+      });
     });
 
     var bufferScrollBefore = buffer();
     var bufferScrollAfter = buffer();
 
-    ammo.scrollSpy({
+    poll(function (resolve) {
+      var _component$getStore2 = component.getStore(),
+          activeProjectIndex = _component$getStore2.activeProjectIndex;
+
+      var canPoll = activeProjectIndex === 0;
+
+      if (canPoll) {
+        firstProject.querySelector('.trigger.go-to-next-project').classList.add(activeFlag);
+      }
+
+      setTimeout(function () {
+        firstProject.querySelector('.trigger.go-to-next-project').classList.remove(activeFlag);
+        resolve(canPoll);
+      }, 3000);
+    }, function () {}, 3000);
+
+    scrollSpy({
       offset: 100,
       initOnLoad: true,
       callbacks: {
         onBefore: function onBefore(verticalScroll) {
-          var _component$getStore2 = component.getStore(),
-              offsets = _component$getStore2.offsets;
+          var _component$getStore3 = component.getStore(),
+              offsets = _component$getStore3.offsets;
 
           if (header.classList.contains(shrinkFlag)) {
             header.classList.remove(shrinkFlag);
           }
 
           var nextActiveProjectIndex = actions.getActiveProjectIndex(offsets, verticalScroll);
-          component.updateStore('activeProjectIndex', function () {
-            return nextActiveProjectIndex;
-          });
+          var activeProjectOffset = offsets[nextActiveProjectIndex];
+
           bufferScrollBefore('buffered-scroll-before', 100, function () {
-            return dispatchChangeActiveProjectIndex();
+            component.updateStore('activeProjectIndex', function () {
+              return nextActiveProjectIndex;
+            });
+            dispatchChangeActiveProjectIndex();
           });
         },
         onAfter: function onAfter(verticalScroll) {
@@ -10148,6 +10192,8 @@ symmetry.addNode('components', 'projects-slider', function ($component) {
           }
 
           var nextActiveProjectIndex = actions.getActiveProjectIndex(offsets, verticalScroll);
+          var activeProjectOffset = offsets[nextActiveProjectIndex];
+
           component.updateStore('activeProjectIndex', function () {
             return nextActiveProjectIndex;
           });
@@ -10158,7 +10204,12 @@ symmetry.addNode('components', 'projects-slider', function ($component) {
       }
     });
 
-    events.onGoToNextProject(renderers.goToNextProject);
+    events.onGoToNextProject(function () {
+      component.updateStore('isMovingToNextProject', function () {
+        return true;
+      });
+      renderers.goToNextProject();
+    });
   });
 
   component.callNode('actions', 'init');

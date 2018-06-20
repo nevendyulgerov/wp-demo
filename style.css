@@ -63,6 +63,7 @@ img {
 
 .trigger {
   cursor: pointer;
+  outline: none;
 }
 
 .trigger .icon {
@@ -935,6 +936,7 @@ button.swiper-pagination-bullet {
   justify-content: space-between;
   -ms-flex-align: center;
   align-items: center;
+  overflow: hidden;
 }
 
 [data-component="project"] .overlay {
@@ -967,6 +969,7 @@ button.swiper-pagination-bullet {
 }
 
 [data-component="project"] .date .year {
+  opacity: 0.5;
   position: absolute;
   top: -10px;
   left: 40px;
@@ -978,9 +981,11 @@ button.swiper-pagination-bullet {
   font-family: "Interstate Black Condensed", sans-serif;
   letter-spacing: 4px;
   cursor: default;
+  transition: all 0.15s ease-in-out;
 }
 
 [data-component="project"] .date .duration {
+  opacity: 0.5;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: center;
@@ -996,6 +1001,7 @@ button.swiper-pagination-bullet {
   font-weight: 600;
   cursor: default;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  transition: all 0.15s ease-in-out;
 }
 
 [data-component="project"] .main-content {
@@ -1015,6 +1021,11 @@ button.swiper-pagination-bullet {
 [data-component="project"] .main-content .thumbnail {
   width: 720px;
   margin: -200px 0 0 0;
+  transition: all 0.15s ease-in-out;
+}
+
+[data-component="project"] .main-content .thumbnail:hover {
+  transition: all 0.15s ease-in-out;
 }
 
 [data-component="project"] .main-content .thumbnail img {
@@ -1033,20 +1044,28 @@ button.swiper-pagination-bullet {
 }
 
 [data-component="project"] .main-content .title h2 {
+  opacity: 0.75;
+  position: relative;
+  bottom: -30px;
   color: white;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  transition: all 0.15s ease-in-out;
 }
 
 [data-component="project"] .main-content .content {
-  width: 420px;
+  width: 520px;
   text-align: center;
   font-family: "Open Sans Light", sans-serif;
 }
 
 [data-component="project"] .main-content .content span, [data-component="project"] .main-content .content p {
+  font-size: 18px;
+  opacity: 0.75;
+  position: relative;
+  bottom: -30px;
   color: white;
-  opacity: 0.85;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  transition: all 0.15s ease-in-out;
 }
 
 [data-component="project"] .team-members {
@@ -1080,7 +1099,15 @@ button.swiper-pagination-bullet {
 }
 
 [data-component="project"] .team-members .team-members-list .team-member-item {
+  position: relative;
+  left: 100px;
   margin: 0 0 15px 0;
+  transition: all 0.15s ease-in-out;
+}
+
+[data-component="project"] .team-members .team-members-list .team-member-item.active {
+  left: 0;
+  transition: all 0.15s ease-in-out;
 }
 
 [data-component="project"] .team-members .team-members-list .team-member-item:last-child {
@@ -1118,6 +1145,30 @@ button.swiper-pagination-bullet {
   text-align: center;
 }
 
+[data-component="projects-slider"] .slider-items .slider-item.active [data-component="project"] .year {
+  opacity: 1;
+  left: 5px;
+  top: -5px;
+  transition: all 0.15s ease-in-out;
+}
+
+[data-component="projects-slider"] .slider-items .slider-item.active [data-component="project"] .duration {
+  opacity: 1;
+  transition: all 0.15s ease-in-out;
+}
+
+[data-component="projects-slider"] .slider-items .slider-item.active [data-component="project"] .main-content .title h2 {
+  opacity: 1;
+  bottom: 0;
+  transition: all 0.15s ease-in-out;
+}
+
+[data-component="projects-slider"] .slider-items .slider-item.active [data-component="project"] .main-content .content span, [data-component="projects-slider"] .slider-items .slider-item.active [data-component="project"] .main-content .content p {
+  opacity: 1;
+  bottom: 0;
+  transition: all 0.15s ease-in-out;
+}
+
 [data-component="projects-slider"] .slider-items .slider-item .trigger.go-to-next-project {
   position: absolute;
   bottom: 32px;
@@ -1130,12 +1181,34 @@ button.swiper-pagination-bullet {
   background-color: transparent;
   border-radius: 50%;
   z-index: 10;
+  transition: all 0.5s ease-in-out;
+}
+
+[data-component="projects-slider"] .slider-items .slider-item .trigger.go-to-next-project.active {
+  bottom: 30px;
+  width: 54px;
+  height: 54px;
+  background-color: rgba(255, 255, 255, 0.15);
+  transition: all 0.5s ease-in-out;
 }
 
 [data-component="projects-slider"] .slider-items .slider-item .trigger.go-to-next-project .icon {
   color: white;
   font-size: 18px;
   pointer-events: none;
+}
+
+[data-component="projects-slider"] .slider-items .slider-item .trigger.go-to-next-project:hover {
+  bottom: 30px;
+  width: 54px;
+  height: 54px;
+  background-color: rgba(255, 255, 255, 0.15);
+  transition: all 0.15s ease-in-out;
+}
+
+[data-component="projects-slider"] .slider-items .slider-item .trigger.go-to-next-project:active {
+  background-color: rgba(255, 255, 255, 0.15);
+  transition: all 0.15s ease-in-out;
 }
 
 [data-component="projects-slider"] .slider-items .slider-item:first-child [data-component="project"] .overlay {

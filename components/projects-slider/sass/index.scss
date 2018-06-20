@@ -15,8 +15,33 @@
 
       &.active {
         [data-component="project"] {
-          .team-members {
+          .year {
+            opacity: 1;
+            left: 5px;
+            top: -5px;
+            transition: $transition-fast;
+          }
+          .duration {
+            opacity: 1;
+            transition: $transition-fast;
+          }
 
+          .main-content {
+            .title {
+              h2 {
+                opacity: 1;
+                bottom: 0;
+                transition: $transition-fast;
+              }
+            }
+
+            .content {
+              span, p {
+                opacity: 1;
+                bottom: 0;
+                transition: $transition-fast;
+              }
+            }
           }
         }
       }
@@ -33,11 +58,33 @@
         background-color: transparent;
         border-radius: 50%;
         z-index: 10;
+        transition: $transition-slow;
+
+        &.active {
+          bottom: 30px;
+          width: 54px;
+          height: 54px;
+          background-color: rgba(255, 255, 255, 0.15);
+          transition: $transition-slow;
+        }
 
         .icon {
           color: $white;
           font-size: 18px;
           pointer-events: none;
+        }
+
+        &:hover {
+          bottom: 30px;
+          width: 54px;
+          height: 54px;
+          background-color: rgba(255, 255, 255, 0.15);
+          transition: $transition-fast;
+        }
+
+        &:active {
+          background-color: rgba(255, 255, 255, 0.15);
+          transition: $transition-fast;
         }
       }
 

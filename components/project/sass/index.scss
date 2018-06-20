@@ -8,6 +8,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden;
 
   .overlay {
     position: absolute;
@@ -41,6 +42,7 @@
     }
 
     .year {
+      opacity: 0.5;
       position: absolute;
       top: -10px;
       left: 40px;
@@ -52,9 +54,11 @@
       font-family: $font-interstate-black-condensed;
       letter-spacing: 4px;
       cursor: default;
+      transition: $transition-fast;
     }
 
     .duration {
+      opacity: 0.5;
       display: flex;
       justify-content: center;
       align-items: flex-end;
@@ -67,6 +71,7 @@
       font-weight: 600;
       cursor: default;
       text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+      transition: $transition-fast;
     }
   }
 
@@ -82,6 +87,11 @@
     .thumbnail {
       width: 720px;
       margin: -200px 0 0 0;
+      transition: $transition-fast;
+
+      &:hover {
+        transition: $transition-fast;
+      }
 
       img {
         display: block;
@@ -99,20 +109,28 @@
       margin: -24px 0 0 0;
 
       h2 {
+        opacity: 0.75;
+        position: relative;
+        bottom: -30px;
         color: $white;
         text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+        transition: $transition-fast;
       }
     }
 
     .content {
-      width: 420px;
+      width: 520px;
       text-align: center;
       font-family: $font-open-sans-light;
 
       span, p {
+        font-size: 18px;
+        opacity: 0.75;
+        position: relative;
+        bottom: -30px;
         color: $white;
-        opacity: 0.85;
         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+        transition: $transition-fast;
       }
     }
   }
@@ -142,7 +160,15 @@
       margin: 0;
 
       .team-member-item {
+        position: relative;
+        left: 100px;
         margin: 0 0 15px 0;
+        transition: $transition-fast;
+
+        &.active {
+          left: 0;
+          transition: $transition-fast;
+        }
 
         &:last-child {
           margin: 0;
