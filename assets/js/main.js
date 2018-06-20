@@ -9708,7 +9708,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     name: 'symmetry'
   };
 
-  var app = ammo.app(props).schema('app').augment('admin');
+  var app = ammo.app(props).schema('app');
 
   app.configure('events').node('onReady', function (callback) {
     return ammo.onDomReady(callback);
@@ -9727,7 +9727,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
   app.callNode('actions', 'init');
 })();
-;"use strict";
+;'use strict';
 
 /* globals symmetry, ammo */
 
@@ -9735,7 +9735,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 * Core: Api
 */
 
-symmetry.addNode("core", "api", function () {
+symmetry.addNode('core', 'api', function () {
   var _window$symmetrySetti = window.symmetrySettings,
       ajaxUrl = _window$symmetrySetti.ajaxUrl,
       ajaxAction = _window$symmetrySetti.ajaxAction,
@@ -9759,14 +9759,14 @@ symmetry.addNode("core", "api", function () {
   * @returns {*}
   */
   var validateResponse = function validateResponse(err, res) {
-    var errorMessage = "Ajax error. Unable to fetch data. Error message is: {error}";
+    var errorMessage = 'Ajax error. Unable to fetch data. Error message is: {error}';
     var hasError = false;
 
     if (err) {
-      errorMessage = errorMessage.replace("{error}", err.responseText);
+      errorMessage = errorMessage.replace('{error}', err.responseText);
       hasError = true;
-    } else if (res && res.status === "error") {
-      errorMessage = errorMessage.replace("{error}", res.message);
+    } else if (res && res.status === 'error') {
+      errorMessage = errorMessage.replace('{error}', res.message);
       hasError = true;
     }
 
@@ -9791,19 +9791,19 @@ symmetry.addNode("core", "api", function () {
 
     return {
       data: {
-        action: "" + ajaxAction,
+        action: '' + ajaxAction,
         data: data || {},
         method: method,
         token: ajaxToken
       },
-      dataType: "JSON",
+      dataType: 'JSON',
       error: function error(_error) {
         return callback(_error);
       },
       success: function success(response) {
         return callback(undefined, response);
       },
-      type: "POST",
+      type: 'POST',
       url: ajaxUrl
     };
   };
@@ -9816,12 +9816,29 @@ symmetry.addNode("core", "api", function () {
     var callback = _ref2.callback;
 
     ajax({
-      callback: callback,
-      method: "get_interface_settings"
+      method: 'get_interface_settings',
+      callback: callback
+    });
+  };
+
+  /**
+  * @description Get projects
+  * @param query
+  * @param callback
+  */
+  var getProjects = function getProjects(_ref3) {
+    var query = _ref3.query,
+        callback = _ref3.callback;
+
+    ajax({
+      method: 'get_projects',
+      data: query,
+      callback: callback
     });
   };
 
   return {
+    getProjects: getProjects,
     getInterfaceSettings: getInterfaceSettings,
     validateResponse: validateResponse
   };
@@ -9974,9 +9991,7 @@ symmetry.addNode('core', 'manager', function () {
 * Common: Header
 */
 
-symmetry.addNode('common', 'header', function () {
-  console.log('common - header');
-});
+symmetry.addNode('common', 'header', function () {});
 ;"use strict";
 
 /* globals symmetry, ammo */
@@ -9994,6 +10009,8 @@ symmetry.addNode("components", "project", function ($component, component) {
 });
 ;'use strict';
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 /* globals symmetry, ammo, jQuery */
 
 symmetry.addNode('components', 'projects-slider', function ($component) {
@@ -10009,17 +10026,25 @@ symmetry.addNode('components', 'projects-slider', function ($component) {
       dispatchChangeActiveProjectIndex = _symmetry$getNode.dispatchChangeActiveProjectIndex,
       interceptChangeActiveProjectIndex = _symmetry$getNode.interceptChangeActiveProjectIndex;
 
+  var _symmetry$getNode2 = symmetry.getNode('core', 'api')(),
+      getProjects = _symmetry$getNode2.getProjects;
+
   var $ = jQuery;
 
   var props = {
-    strongTypes: true
+    strongTypes: true,
+    storeKey: 'projects-slider'
   };
   var state = {
+    projects: { type: 'array', value: [] },
     offsets: { type: 'array', value: [] },
     activeProjectIndex: { type: 'number', value: 0 },
-    isMovingToNextProject: { type: 'boolean', value: false }
+    isMovingToNextProject: { type: 'boolean', value: false },
+    isLoadingProjects: { type: 'boolean', value: false },
+    projectsPerPage: { type: 'number', value: 5 },
+    projectsOffsetIndex: { type: 'number', value: 2 }
   };
-  var component = app(props, state).schema('component');
+  var component = app(props, state).schema('component').syncWithPersistentStore();
 
   component.configure('events').node('onGoToNextProject', function (callback) {
     ammo.delegateEvent('click', '.trigger.go-to-next-project', callback, $component);
@@ -10068,8 +10093,59 @@ symmetry.addNode('components', 'projects-slider', function ($component) {
     animateMoveToNextProject(scrollTop);
   });
 
-  component.configure('actions').node('getActiveProjectIndex', function (questionOffsets, scrollVerticalOffset) {
-    var baseOffset = 60;
+  component.configure('actions').node('randomGradient', function ($target, multiplier) {
+    var randomGradient = function randomGradient() {
+      var c1 = {
+        r: Math.floor(Math.random() * multiplier),
+        g: Math.floor(Math.random() * multiplier),
+        b: Math.floor(Math.random() * multiplier)
+      };
+      var c2 = {
+        r: Math.floor(Math.random() * multiplier),
+        g: Math.floor(Math.random() * multiplier),
+        b: Math.floor(Math.random() * multiplier)
+      };
+      c1.rgb = 'rgb(' + c1.r + ',' + c1.g + ',' + c1.b + ')';
+      c2.rgb = 'rgb(' + c2.r + ',' + c2.g + ',' + c2.b + ')';
+      return 'radial-gradient(at top left, ' + c1.rgb + ', ' + c2.rgb + ')';
+    };
+    $target.css({ 'background': randomGradient() });
+  }).node('getMoreProjects', function () {
+    component.updateStore('isLoadingProjects', function () {
+      return true;
+    });
+
+    var _component$getStore = component.getStore(),
+        projects = _component$getStore.projects,
+        projectsPerPage = _component$getStore.projectsPerPage,
+        projectsOffsetIndex = _component$getStore.projectsOffsetIndex;
+
+    getProjects({
+      query: {
+        projectsOffsetIndex: projectsOffsetIndex,
+        projectsPerPage: projectsPerPage
+      },
+      callback: function callback(err, res) {
+        if (err) {
+          return console.log(err);
+        }
+        var data = res.data;
+
+        component.updateStore('isLoadingProjects', function () {
+          return false;
+        });
+        component.updateStore('projectsPageIndex', function (projectsPageIndex) {
+          return projectsPageIndex + 1;
+        });
+        component.updateStore('projects', function () {
+          return [].concat(_toConsumableArray(projects), _toConsumableArray(data));
+        });
+        console.log('next projects:');
+        console.log(data);
+      }
+    });
+  }).node('getActiveProjectIndex', function (questionOffsets, scrollVerticalOffset) {
+    var baseOffset = 300;
     var nextActiveQuestionIndex = -1;
 
     questionOffsets.forEach(function (questionOffset, index) {
@@ -10106,14 +10182,17 @@ symmetry.addNode('components', 'projects-slider', function ($component) {
     var activeFlag = 'active';
     var shrinkFlag = 'shrunk';
     var offsets = actions.getOffsets();
-    var firstProject = selectAll('.slider-item', $component).eq(0);
     component.updateStore('offsets', function () {
       return offsets;
     });
 
+    selectAll('.slider-item', $component).each(function (project) {
+      actions.randomGradient($(project.querySelector('.overlay')), 320);
+    });
+
     interceptChangeActiveProjectIndex(function () {
-      var _component$getStore = component.getStore(),
-          activeProjectIndex = _component$getStore.activeProjectIndex;
+      var _component$getStore2 = component.getStore(),
+          activeProjectIndex = _component$getStore2.activeProjectIndex;
 
       var projects = selectAll('.slider-item', $component);
       var activeProject = projects.eq(activeProjectIndex);
@@ -10149,41 +10228,46 @@ symmetry.addNode('components', 'projects-slider', function ($component) {
     var bufferScrollAfter = buffer();
 
     poll(function (resolve) {
-      var _component$getStore2 = component.getStore(),
-          activeProjectIndex = _component$getStore2.activeProjectIndex;
+      var _component$getStore3 = component.getStore(),
+          activeProjectIndex = _component$getStore3.activeProjectIndex;
 
-      var canPoll = activeProjectIndex === 0;
+      var activeProject = selectAll('.slider-item', $component).eq(activeProjectIndex);
 
-      if (canPoll) {
-        firstProject.querySelector('.trigger.go-to-next-project').classList.add(activeFlag);
-      }
+      activeProject.querySelector('.trigger.go-to-next-project').classList.add(activeFlag);
 
       setTimeout(function () {
-        firstProject.querySelector('.trigger.go-to-next-project').classList.remove(activeFlag);
-        resolve(canPoll);
+        activeProject.querySelector('.trigger.go-to-next-project').classList.remove(activeFlag);
+        resolve(true);
       }, 3000);
     }, function () {}, 3000);
 
     scrollSpy({
-      offset: 100,
+      offset: 30,
       initOnLoad: true,
       callbacks: {
         onBefore: function onBefore(verticalScroll) {
-          var _component$getStore3 = component.getStore(),
-              offsets = _component$getStore3.offsets;
+          var _component$getStore4 = component.getStore(),
+              offsets = _component$getStore4.offsets;
 
           if (header.classList.contains(shrinkFlag)) {
             header.classList.remove(shrinkFlag);
           }
 
           var nextActiveProjectIndex = actions.getActiveProjectIndex(offsets, verticalScroll);
-          var activeProjectOffset = offsets[nextActiveProjectIndex];
 
           bufferScrollBefore('buffered-scroll-before', 100, function () {
+            var _component$getStore5 = component.getStore(),
+                isLoadingProjects = _component$getStore5.isLoadingProjects;
+
+            var isLastIndex = nextActiveProjectIndex === offsets.length - 1;
             component.updateStore('activeProjectIndex', function () {
               return nextActiveProjectIndex;
             });
             dispatchChangeActiveProjectIndex();
+
+            if (isLastIndex && !isLoadingProjects) {
+              actions.getMoreProjects();
+            }
           });
         },
         onAfter: function onAfter(verticalScroll) {
@@ -10192,13 +10276,20 @@ symmetry.addNode('components', 'projects-slider', function ($component) {
           }
 
           var nextActiveProjectIndex = actions.getActiveProjectIndex(offsets, verticalScroll);
-          var activeProjectOffset = offsets[nextActiveProjectIndex];
 
           component.updateStore('activeProjectIndex', function () {
             return nextActiveProjectIndex;
           });
           bufferScrollAfter('buffered-scroll-after', 100, function () {
-            return dispatchChangeActiveProjectIndex();
+            var _component$getStore6 = component.getStore(),
+                isLoadingProjects = _component$getStore6.isLoadingProjects;
+
+            var isLastIndex = nextActiveProjectIndex === offsets.length - 1;
+            dispatchChangeActiveProjectIndex();
+
+            if (isLastIndex && !isLoadingProjects) {
+              actions.getMoreProjects();
+            }
           });
         }
       }

@@ -4,7 +4,7 @@
  * Core: Api
  */
 
-symmetry.addNode("core", "api", () => {
+symmetry.addNode('core', 'api', () => {
 
   const { ajaxUrl, ajaxAction, ajaxToken } = window.symmetrySettings;
   const $ = window.jQuery;
@@ -29,10 +29,10 @@ symmetry.addNode("core", "api", () => {
     let hasError = false;
 
     if (err) {
-      errorMessage = errorMessage.replace("{error}", err.responseText);
+      errorMessage = errorMessage.replace('{error}', err.responseText);
       hasError = true;
-    } else if (res && res.status === "error") {
-      errorMessage = errorMessage.replace("{error}", res.message);
+    } else if (res && res.status === 'error') {
+      errorMessage = errorMessage.replace('{error}', res.message);
       hasError = true;
     }
 
@@ -58,10 +58,10 @@ symmetry.addNode("core", "api", () => {
         method,
         token: ajaxToken,
       },
-      dataType: "JSON",
+      dataType: 'JSON',
       error: error => callback(error),
       success: response => callback(undefined, response),
-      type: "POST",
+      type: 'POST',
       url: ajaxUrl,
     };
   };
@@ -72,12 +72,26 @@ symmetry.addNode("core", "api", () => {
    */
   const getInterfaceSettings = ({ callback }) => {
     ajax({
-      callback,
-      method: "get_interface_settings",
+      method: 'get_interface_settings',
+      callback
+    });
+  };
+
+  /**
+   * @description Get projects
+   * @param query
+   * @param callback
+   */
+  const getProjects = ({ query, callback }) => {
+    ajax({
+      method: 'get_projects',
+      data: query,
+      callback
     });
   };
 
   return {
+    getProjects,
     getInterfaceSettings,
     validateResponse,
   };

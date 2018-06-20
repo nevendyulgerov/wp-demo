@@ -3,17 +3,23 @@
 symmetry.addNode('components', 'projects-slider', ($component) => {
   const { isObj, selectAll, app, buffer, scrollSpy, poll } = ammo;
   const { dispatchChangeActiveProjectIndex, interceptChangeActiveProjectIndex } = symmetry.getNode('core', 'globalEvents')();
+  const { getProjects } = symmetry.getNode('core', 'api')();
   const $ = jQuery;
 
   const props = {
-    strongTypes: true
+    strongTypes: true,
+    storeKey: 'projects-slider'
   };
   const state = {
+    projects: { type: 'array', value: [] },
     offsets: { type: 'array', value: [] },
     activeProjectIndex: { type: 'number', value: 0 },
-    isMovingToNextProject: { type: 'boolean', value: false }
+    isMovingToNextProject: { type: 'boolean', value: false },
+    isLoadingProjects: { type: 'boolean', value: false },
+    projectsPerPage: { type: 'number', value: 5 },
+    projectsOffsetIndex: { type: 'number', value: 2 }
   };
-  const component = app(props, state).schema('component');
+  const component = app(props, state).schema('component').syncWithPersistentStore();
 
   component.configure('events')
     .node('onGoToNextProject', callback => {
@@ -59,8 +65,48 @@ symmetry.addNode('components', 'projects-slider', ($component) => {
     });
 
   component.configure('actions')
+    .node('randomGradient', ($target, multiplier) => {
+      const randomGradient = () => {
+        const c1 = {
+          r: Math.floor(Math.random() * multiplier),
+          g: Math.floor(Math.random() * multiplier),
+          b: Math.floor(Math.random() * multiplier)
+        };
+        const c2 = {
+          r: Math.floor(Math.random() * multiplier),
+          g: Math.floor(Math.random() * multiplier),
+          b: Math.floor(Math.random() * multiplier)
+        };
+        c1.rgb = 'rgb(' + c1.r + ',' + c1.g + ',' + c1.b + ')';
+        c2.rgb = 'rgb(' + c2.r + ',' + c2.g + ',' + c2.b + ')';
+        return 'radial-gradient(at top left, ' + c1.rgb + ', ' + c2.rgb + ')';
+      };
+      $target.css({'background': randomGradient()});
+    })
+    .node('getMoreProjects', () => {
+      component.updateStore('isLoadingProjects', () => true);
+      const { projects, projectsPerPage, projectsOffsetIndex } = component.getStore();
+
+      getProjects({
+        query: {
+          projectsOffsetIndex: projectsOffsetIndex,
+          projectsPerPage: projectsPerPage
+        },
+        callback: (err, res) => {
+          if (err) {
+            return console.log(err);
+          }
+          const { data } = res;
+          component.updateStore('isLoadingProjects', () => false);
+          component.updateStore('projectsPageIndex', projectsPageIndex => projectsPageIndex + 1);
+          component.updateStore('projects', () => [...projects, ...data]);
+          console.log('next projects:');
+          console.log(data);
+        }
+      });
+    })
     .node('getActiveProjectIndex', (questionOffsets, scrollVerticalOffset) => {
-      const baseOffset = 60;
+      const baseOffset = 300;
       let nextActiveQuestionIndex = -1;
 
       questionOffsets.forEach((questionOffset, index) => {
@@ -95,8 +141,11 @@ symmetry.addNode('components', 'projects-slider', ($component) => {
       const activeFlag = 'active';
       const shrinkFlag = 'shrunk';
       const offsets = actions.getOffsets();
-      const firstProject = selectAll('.slider-item', $component).eq(0);
       component.updateStore('offsets', () => offsets);
+
+      selectAll('.slider-item', $component).each(project => {
+        actions.randomGradient($(project.querySelector('.overlay')), 320);
+      });
 
       interceptChangeActiveProjectIndex(() => {
         const { activeProjectIndex } = component.getStore();
@@ -131,20 +180,18 @@ symmetry.addNode('components', 'projects-slider', ($component) => {
 
       poll(resolve => {
         const { activeProjectIndex } = component.getStore();
-        const canPoll = activeProjectIndex === 0;
+        const activeProject = selectAll('.slider-item', $component).eq(activeProjectIndex);
 
-        if (canPoll) {
-          firstProject.querySelector('.trigger.go-to-next-project').classList.add(activeFlag);
-        }
+        activeProject.querySelector('.trigger.go-to-next-project').classList.add(activeFlag);
 
         setTimeout(() => {
-          firstProject.querySelector('.trigger.go-to-next-project').classList.remove(activeFlag);
-          resolve(canPoll);
+          activeProject.querySelector('.trigger.go-to-next-project').classList.remove(activeFlag);
+          resolve(true);
         }, 3000);
       }, () => {}, 3000);
 
       scrollSpy({
-        offset: 100,
+        offset: 30,
         initOnLoad: true,
         callbacks: {
           onBefore: verticalScroll => {
@@ -154,11 +201,16 @@ symmetry.addNode('components', 'projects-slider', ($component) => {
             }
 
             const nextActiveProjectIndex = actions.getActiveProjectIndex(offsets, verticalScroll);
-            const activeProjectOffset = offsets[nextActiveProjectIndex];
 
             bufferScrollBefore('buffered-scroll-before', 100, () => {
+              const { isLoadingProjects } = component.getStore();
+              const isLastIndex = nextActiveProjectIndex === offsets.length - 1;
               component.updateStore('activeProjectIndex', () => nextActiveProjectIndex);
-              dispatchChangeActiveProjectIndex()
+              dispatchChangeActiveProjectIndex();
+
+              if (isLastIndex && !isLoadingProjects) {
+                actions.getMoreProjects();
+              }
             });
           },
           onAfter: verticalScroll => {
@@ -167,10 +219,17 @@ symmetry.addNode('components', 'projects-slider', ($component) => {
             }
 
             const nextActiveProjectIndex = actions.getActiveProjectIndex(offsets, verticalScroll);
-            const activeProjectOffset = offsets[nextActiveProjectIndex];
 
             component.updateStore('activeProjectIndex', () => nextActiveProjectIndex);
-            bufferScrollAfter('buffered-scroll-after', 100, () => dispatchChangeActiveProjectIndex());
+            bufferScrollAfter('buffered-scroll-after', 100, () => {
+              const { isLoadingProjects } = component.getStore();
+              const isLastIndex = nextActiveProjectIndex === offsets.length - 1;
+              dispatchChangeActiveProjectIndex();
+
+              if (isLastIndex && !isLoadingProjects) {
+                actions.getMoreProjects();
+              }
+            });
           }
         }
       });

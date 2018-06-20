@@ -10,6 +10,10 @@
   align-items: center;
   overflow: hidden;
 
+  @include respond-to('desktop-sm') {
+    flex-direction: column;
+  }
+
   .overlay {
     position: absolute;
     z-index: 1;
@@ -28,21 +32,36 @@
     width: 300px;
     padding: 0 0 0 40px;
 
+    @include respond-to('desktop-sm') {
+      width: 100%;
+      padding: 0 0 160px 40px;
+    }
+
     &.same-year {
       .year {
         font-size: 116px;
         left: 0;
+
+        @include respond-to('desktop-sm') {
+          top: 16px;
+          font-size: 92px;
+          padding: 0 0 100px 0;
+        }
       }
 
       .duration {
         position: initial;
         width: calc(100% - 64px);
         font-size: 32px;
+
+        @include respond-to('desktop-sm') {
+          width: calc(100% - 52px);
+        }
       }
     }
 
     .year {
-      opacity: 0.5;
+      opacity: 0.3;
       position: absolute;
       top: -10px;
       left: 40px;
@@ -54,7 +73,14 @@
       font-family: $font-interstate-black-condensed;
       letter-spacing: 4px;
       cursor: default;
+      pointer-events: none;
       transition: $transition-fast;
+
+      @include respond-to('desktop-sm') {
+        top: -20px;
+        font-size: 92px;
+        padding: 0 0 100px 40px;
+      }
     }
 
     .duration {
@@ -71,6 +97,7 @@
       font-weight: 600;
       cursor: default;
       text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+      pointer-events: none;
       transition: $transition-fast;
     }
   }
@@ -88,6 +115,10 @@
       width: 720px;
       margin: -200px 0 0 0;
       transition: $transition-fast;
+
+      @include respond-to('mobile-lg') {
+        min-width: 420px;
+      }
 
       &:hover {
         transition: $transition-fast;
@@ -109,7 +140,7 @@
       margin: -24px 0 0 0;
 
       h2 {
-        opacity: 0.75;
+        opacity: 0.5;
         position: relative;
         bottom: -30px;
         color: $white;
@@ -125,7 +156,7 @@
 
       span, p {
         font-size: 18px;
-        opacity: 0.75;
+        opacity: 0.3;
         position: relative;
         bottom: -30px;
         color: $white;
@@ -144,7 +175,15 @@
     width: 300px;
     padding: 20px;
 
+    @include respond-to('desktop-sm') {
+      width: auto;
+      flex-direction: column;
+      text-align: center;
+      padding: 40px 20px 20px 20px;
+    }
+
     .label {
+      opacity: 0.3;
       pointer-events: none;
       position: absolute;
       top: calc(50% - 6px);
@@ -152,6 +191,14 @@
       transform: rotate(-90deg);
       color: $white;
       font-family: $font-open-sans-light;
+      transition: $transition-fast;
+
+      @include respond-to('desktop-sm') {
+        position: relative;
+        transform: rotate(0deg);
+        right: 0;
+        margin: 0 0 20px 0;
+      }
     }
 
     .team-members-list {
@@ -159,11 +206,21 @@
       padding: 0;
       margin: 0;
 
+      @include respond-to('desktop-sm') {
+       margin: 0 0 120px 0;
+      }
+
       .team-member-item {
         position: relative;
         left: 100px;
         margin: 0 0 15px 0;
         transition: $transition-fast;
+
+        @include respond-to('desktop-sm') {
+          left: 0;
+          display: inline-block;
+          margin: 0 15px 15px 0;
+        }
 
         &.active {
           left: 0;
@@ -172,6 +229,11 @@
 
         &:last-child {
           margin: 0;
+
+          @include respond-to('desktop-sm') {
+            display: inline-block;
+            margin: 0 0 15px 0;
+          }
         }
 
         .team-member-box {

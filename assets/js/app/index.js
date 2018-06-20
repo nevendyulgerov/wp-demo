@@ -10,7 +10,7 @@
     name: 'symmetry',
   };
 
-  const app = ammo.app(props).schema('app').augment('admin');
+  const app = ammo.app(props).schema('app');
 
   app.configure('events')
     .node('onReady', callback => ammo.onDomReady(callback));

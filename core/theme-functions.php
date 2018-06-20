@@ -3,15 +3,19 @@
  * Theme functions
  */
 
+use Symmetry\Ajax;
+
 add_action('init', 'setupTheme', 10);
 add_action('init', 'registerMenus', 20);
 add_action('wp_enqueue_scripts', 'enqueueResources', 30);
 add_action('admin_enqueue_scripts', 'enqueueAdminResources', 40);
 add_filter('wp_title', 'getPageTitle', 10, 2);
 add_action('wp_footer', 'dequeScripts');
-add_action('wp_ajax_get_personalized_data', 'getPersonalizedDataCallback');
-add_action('wp_ajax_nopriv_get_personalized_data', 'getPersonalizedDataCallback');
 add_filter('wp_nav_menu_items', 'addLanguageSwitcher', 10, 2);
+
+add_action('wp_ajax_symmetry_ajax_request', 'symmetry_ajax_request');
+add_action('wp_ajax_nopriv_symmetry_ajax_request', 'symmetry_ajax_request');
+
 
 /**
  * Setup theme
@@ -50,9 +54,7 @@ function enqueueResources() {
 	wp_enqueue_script('makingchange-script', get_template_directory_uri() . '/assets/js/main.js', array('jquery'));
 	
 	// DEV NOTE: Add any global javascript properties here
-	wp_localize_script('makingchange-script', 'makingChangeSettings', array(
-		"ajax_url" => admin_url("admin-ajax.php")
-	));
+	wp_localize_script('makingchange-script', 'symmetrySettings', Ajax::getAjaxSettings());
 }
 
 /**
@@ -109,6 +111,6 @@ function dequeScripts() {
  * AJAX: Get personalized data callback
  * Delegates response to class AJAX
  */
-function getPersonalizedDataCallback() {
-	\Forci\Ajax::getPersonalizationData();
+function symmetry_ajax_request() {
+	Ajax::handleAjaxRequest();
 }

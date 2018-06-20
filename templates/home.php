@@ -5,9 +5,10 @@
 
 use	Symmetry\ProjectsSlider;
 
+$posts_per_page = 5;
 $projects_query = array(
 	'post_type' => 'project',
-	'posts_per_page' => 5,
+	'posts_per_page' => $posts_per_page,
 	'meta_key' => 'project_end_date',
 	'orderby' => 'meta_value',
 	'order' => 'DESC'

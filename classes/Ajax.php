@@ -34,13 +34,42 @@ class Ajax {
 		// TODO: Add ajax methods
 		
 		switch ($method) {
-			case '':
+			case 'get_interface_settings':
+				self::sendJsonResponse(array(
+					'status' => 'success'
+				));
+				break;
+				
+			case 'get_projects':
+				
+				self::sendJsonResponse(self::createSuccessResponse(self::getPosts()));
 				break;
 				
 			default:
 				self::sendJsonResponse(self::createErrorResponse());
 				break;
 		}
+	}
+	
+	/**
+	 * @description Get posts
+	 * @return array
+	 */
+	private static function getPosts() {
+		$requestData = $_POST['data'];
+		$projectsOffsetIndex = $requestData['projectsOffsetIndex'];
+		$projectsPerPage = $requestData['projectsPerPage'];
+		
+		$projects_query = array(
+			'post_type' => 'project',
+			'posts_per_page' => $projectsPerPage,
+			'offset' => $projectsOffsetIndex,
+			'meta_key' => 'project_end_date',
+			'orderby' => 'meta_value',
+			'order' => 'DESC'
+		);
+		
+		return get_posts($projects_query);
 	}
 	
 	/**

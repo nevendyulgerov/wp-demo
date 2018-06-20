@@ -32,7 +32,7 @@ $isWithinSameYear = $startDateTime->format('Y') === $endDateTime->format('Y');
     </div>
   </div>
   
-  <div class="date <?php echo 'same-year' ?>">
+  <div class="date <?php echo 'same-year' ?>" title="<?php echo __('Project date') ?>">
     <time class="year">
 	    <?php echo $endDateTime->format('Y') ?>
     </time>
