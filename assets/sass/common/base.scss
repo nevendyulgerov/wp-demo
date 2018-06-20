@@ -1,0 +1,41 @@
+
+/**
+ * Base styles
+ */
+
+body {
+  background-color: $white;
+  font-family: $font-open-sans;
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  &::selection {
+    background-color: $light-blue;
+  }
+}
+
+h2 {
+  font-size: 42px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+p {
+  font-size: 16px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+img {
+  border-radius: 0;
+}
+
+.trigger {
+  cursor: pointer;
+
+  .icon {
+    pointer-events: none;
+  }
+}

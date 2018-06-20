@@ -1,0 +1,48 @@
+
+/**
+ * Typography
+ */
+
+/// Open Sans Light
+@font-face {
+  font-family: "Open Sans Light";
+  src: url("./assets/fonts/open-sans-light/OpenSansLight.eot");
+  src:
+    url("./assets/fonts/open-sans-light/OpenSansLight.ttf") format("ttf"),
+    url("./assets/fonts/open-sans-light/OpenSansLight.woff") format("woff"),
+    url("./assets/fonts/open-sans-light/OpenSansLight.woff2") format("woff2"),
+    url("./assets/fonts/open-sans-light/OpenSansLight.otf") format("opentype");
+}
+
+/// Open Sans Regular
+@font-face {
+  font-family: "Open Sans Regular";
+  src: url("./assets/fonts/open-sans-regular/OpenSansRegular.eot");
+  src:
+    url("./assets/fonts/open-sans-regular/OpenSansRegular.ttf") format("ttf"),
+    url("./assets/fonts/open-sans-regular/OpenSansRegular.woff") format("woff"),
+    url("./assets/fonts/open-sans-regular/OpenSansRegular.woff2") format("woff2"),
+    url("./assets/fonts/open-sans-regular/OpenSansRegular.otf") format("opentype");
+}
+
+/// Interstate Condensed
+@font-face {
+  font-family: "Interstate Condensed";
+  src: url("./assets/fonts/interstate-condensed/InterstateCondensed.eot");
+  src:
+    url("./assets/fonts/interstate-condensed/InterstateCondensed.ttf") format("ttf"),
+    url("./assets/fonts/interstate-condensed/InterstateCondensed.woff") format("woff"),
+    url("./assets/fonts/interstate-condensed/InterstateCondensed.woff2") format("woff2"),
+    url("./assets/fonts/interstate-condensed/InterstateCondensed.otf") format("opentype");
+}
+
+/// Interstate Black Condensed
+@font-face {
+  font-family: "Interstate Black Condensed";
+  src: url("./assets/fonts/interstate-black-condensed/InterstateBlackCondensed.eot");
+  src:
+    url("./assets/fonts/interstate-black-condensed/InterstateBlackCondensed.ttf") format("ttf"),
+    url("./assets/fonts/interstate-black-condensed/InterstateBlackCondensed.woff") format("woff"),
+    url("./assets/fonts/interstate-black-condensed/InterstateBlackCondensed.woff2") format("woff2"),
+    url("./assets/fonts/interstate-black-condensed/InterstateBlackCondensed.otf") format("opentype");
+}

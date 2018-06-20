@@ -1,0 +1,80 @@
+
+/**
+ * Colors
+ */
+
+$light-blue: rgb(83, 203, 255) !default;
+$blue: rgb(39, 167, 222) !default;
+$azure: #89cfff !default;
+$dark-blue: rgb(44, 109, 137) !default;
+$darker-blue: rgb(60, 70, 76) !default;
+$bright-purple: #F42567 !default;
+$purple: #b881fc !default;
+$solid-purple: #4E3F79 !default;
+$light-purple: rgba(184, 129, 262, 0.25);
+$dark-purple: #302E43 !default;
+$red: rgb(254, 81, 65) !default;
+$light-red: rgba(217, 30, 24, 0.5) !default;
+$green: #41A85F !default;
+$dark-green: #138c35 !default;
+$light-green: rgb(144, 198, 149) !default;
+$soft-green: #b1dfad !default;
+$yellow: rgb(255, 173, 0) !default;
+$light-yellow: rgba(255, 173, 0, 0.5);
+$white: rgb(255, 255, 255) !default;
+$lighter-grey: rgb(246, 246, 246) !default;
+$light-grey: rgb(242, 242, 242) !default;
+$grey: rgb(216, 216, 216) !default;
+$dark-grey: rgb(156, 156, 156) !default;
+$solid-grey: #818181 !default;
+$darker-grey: #727272 !default;
+$dimmed: #333 !default;
+$dark-metallic: rgb(49, 49, 52) !default;
+$highlight: #F53FC1 !default;
+$highlightRGBA: rgba(245, 63, 193, 0.75) !default;
+$highlightRGBALight: rgba(245, 63, 193, 0.15) !default;
+$black: rgba(0, 0, 0, 1) !default;
+
+/// text shadows
+$text-shadow-default: 2px 1px 1px rgba(0,0,0,0.3) !default;
+$text-shadow-light: 2px 1px 1px rgba(155, 155, 155, 0.3) !default;
+$text-shadow-red: 2px 1px 1px rgba(231, 76, 60, 0.3) !default;
+$text-shadow-yellow: 2px 1px 1px rgba(241, 196, 15, 0.3) !default;
+$text-shadow-orange: 2px 1px 1px rgba(243, 156, 18, 0.3) !default;
+$text-shadow-purple: 2px 1px 1px rgba(155, 89, 182, 0.3) !default;
+$text-shadow-green: 2px 1px 1px rgba(39, 174, 96, 0.3) !default;
+$text-shadow-teal: 2px 1px 1px rgba(26, 188, 156, 0.3) !default;
+
+/// box shadows
+$shadow-0: 0 1px 1px 0 rgba(0,0,0,0.16),0 1px 1px 0 rgba(239,239,239,0.12);
+$shadow-1: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+$shadow-2: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+$shadow-3: 0 12px 15px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+
+/// font shadows
+$font-depth-0: 1px 0px 0px rgba(0,0,0,0.3);
+$font-depth-1: 2px 1px 1px rgba(0,0,0,0.3);
+
+/// transitions
+$transition-fast: all 0.15s ease-in-out;
+$transition-normal: all 0.3s ease-in-out;
+$transition-slow: all 0.5s ease-in-out;
+
+/// fonts
+$font-open-sans: "Open Sans", sans-serif;
+$font-open-sans-light: "Open Sans Light", sans-serif;
+$font-interstate-condensed: "Interstate Condensed", sans-serif;
+$font-interstate-black-condensed: "Interstate Black Condensed", sans-serif;
+
+/// breakpoints
+$breakpoints: (
+  'mobile-xs': (max-width: 320px),
+  'mobile-sm': (max-width: 420px),
+  'mobile-md': (max-width: 640px),
+  'mobile-lg': (max-width: 768px),
+  'mobile-xl': (max-width: 1024px),
+  'desktop-sm': (max-width: 1280px),
+  'desktop-md': (max-width: 1366px),
+  'desktop-lg': (max-width: 1440px),
+  'desktop-xl': (max-width: 1980px),
+) !default;

@@ -1,0 +1,94 @@
+/**
+ * Component: ProjectsSlider
+ */
+
+[data-component="projects-slider"] {
+
+  .slider-items {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    .slider-item {
+      position: relative;
+      text-align: center;
+
+      &.active {
+        [data-component="project"] {
+          .team-members {
+
+          }
+        }
+      }
+
+      .trigger.go-to-next-project {
+        position: absolute;
+        bottom: 32px;
+        left: 0;
+        right: 0;
+        margin: 10px auto 30px auto;
+        width: 50px;
+        height: 50px;
+        border: 1px solid $white;
+        background-color: transparent;
+        border-radius: 50%;
+        z-index: 10;
+
+        .icon {
+          color: $white;
+          font-size: 18px;
+          pointer-events: none;
+        }
+      }
+
+      &:first-child {
+        [data-component="project"] {
+          .overlay {
+            position: absolute;
+            z-index: 1;
+            top: 220px;
+          }
+
+          .main-content {
+            .thumbnail {
+              margin: -200px 0 0 0;
+            }
+          }
+        }
+
+        .trigger.go-to-next-project {
+          /// bottom: 0;
+          /// margin: 10px auto 20px auto;
+        }
+      }
+
+      &:not(:first-child) {
+        .trigger.go-to-next-project {
+          /// bottom: 42px;
+        }
+      }
+
+      &:nth-child(2) {
+        [data-component="project"] {
+          .overlay {
+            background: #00C9FF;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #00C9FF, #92FE9D);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #00C9FF, #92FE9D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+          }
+        }
+      }
+
+      &:nth-child(3) {
+        [data-component="project"] {
+          .overlay {
+            background: #B993D6;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #8CA6DB, #B993D6);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #8CA6DB, #B993D6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+          }
+        }
+      }
+    }
+  }
+}

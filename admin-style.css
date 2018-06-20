@@ -1,0 +1,67 @@
+
+/**
+ * Admin styles
+ */
+
+.wp-list-table.posts #employee_id {
+    width: 80px !important;
+}
+
+.wp-list-table.posts #project_id {
+    width: 80px !important;
+}
+
+.wp-list-table.posts #team_members {
+    width: 400px !important;
+}
+
+.wp-list-table.posts #employee_projects {
+    width: 400px !important;
+}
+
+.wp-list-table.posts #project_date {
+    width: 240px !important;
+}
+
+.wp-list-table.posts .employee_projects.column-employee_projects {
+    padding-top: 15px !important;
+}
+
+.wp-list-table.posts .team_members.column-team_members {
+    padding-top: 15px !important;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.wp-list-table.posts #featured_img {
+    width: 100px !important;
+}
+
+.wp-list-table.posts .employee-thumbnail,
+.wp-list-table.posts .project-thumbnail {
+    display:block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.wp-list-table.posts .tag-team-member,
+.wp-list-table.posts .tag-project {
+    padding: 5px 10px;
+    margin: 0 10px 10px 0;
+    background-color: #efefef;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+    cursor: default;
+}
+
+.wp-list-table.posts .project-start-date,
+.wp-list-table.posts .project-end-date {
+    font-weight: 700;
+}

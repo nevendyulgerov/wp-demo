@@ -1,0 +1,15 @@
+
+/**
+ * Footer styles
+ */
+
+footer.site-footer {
+  background-color: $light-grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .site-info {
+    text-align: center;
+  }
+}

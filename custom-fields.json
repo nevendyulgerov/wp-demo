@@ -1,0 +1,1690 @@
+[
+    {
+        "key": "group_5a982464d2792",
+        "title": "Home - Carousel",
+        "fields": [
+            {
+                "key": "field_5a985046560da",
+                "label": "Title",
+                "name": "carousel_title",
+                "type": "text",
+                "instructions": "Insert title for the carousel.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": 300,
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_5a98505f560db",
+                "label": "Subtitle",
+                "name": "carousel_subtitle",
+                "type": "wysiwyg",
+                "instructions": "Insert subtitle for the carousel.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "tabs": "all",
+                "toolbar": "basic",
+                "media_upload": 0
+            },
+            {
+                "key": "field_5a982464d9351",
+                "label": "Pagination",
+                "name": "carousel_pagination",
+                "type": "true_false",
+                "instructions": "Toggle carousel pagination.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": 50,
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0
+            },
+            {
+                "key": "field_5a9825235d75b",
+                "label": "Navigation",
+                "name": "carousel_navigation",
+                "type": "true_false",
+                "instructions": "Tick to enable the carousel navigation.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": 50,
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0
+            },
+            {
+                "key": "field_5a982575ca1c4",
+                "label": "Speed",
+                "name": "carousel_speed",
+                "type": "number",
+                "instructions": "Insert the carousel speed (in seconds).",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": 50,
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "0.5",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "min": "0.1",
+                "max": 10,
+                "step": "0.1",
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_5a9825b2abcc4",
+                "label": "Direction",
+                "name": "carousel_direction",
+                "type": "select",
+                "instructions": "Select direction for the carousel.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": 50,
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "horizontal": "Horizontal",
+                    "vertical": "Vertical"
+                },
+                "default_value": [
+                    "horizontal"
+                ],
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": "",
+                "disabled": 0,
+                "readonly": 0
+            },
+            {
+                "key": "field_5a98507a560dc",
+                "label": "Items",
+                "name": "carousel_items",
+                "type": "repeater",
+                "instructions": "Insert the carousel items.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "collapsed": "field_5a9850c0560dd",
+                "min": 3,
+                "max": "",
+                "layout": "row",
+                "button_label": "Add Carousel Item",
+                "sub_fields": [
+                    {
+                        "key": "field_5a9850c0560dd",
+                        "label": "Type",
+                        "name": "carousel_type",
+                        "type": "select",
+                        "instructions": "Select the type for the carousel item.",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "choices": {
+                            "post": "Post",
+                            "page": "Page",
+                            "product": "Product",
+                            "category": "Category",
+                            "custom": "Custom"
+                        },
+                        "default_value": [
+                            "product"
+                        ],
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "ui": 0,
+                        "ajax": 0,
+                        "placeholder": "",
+                        "disabled": 0,
+                        "readonly": 0
+                    },
+                    {
+                        "key": "field_5aa54d912b490",
+                        "label": "Text Layout",
+                        "name": "text_layout",
+                        "type": "select",
+                        "instructions": "Select text layout.",
+                        "required": "",
+                        "conditional_logic": "",
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "choices": {
+                            "left-top": "Left - Top",
+                            "left-center": "Left - Center",
+                            "left-bottom": "Left - Bottom",
+                            "center-top": "Center - Top",
+                            "center-center": "Center - Center",
+                            "center-bottom": "Center - Bottom",
+                            "right-top": "Right - Top",
+                            "right-center": "Right - Center",
+                            "right-bottom": "Right - Bottom"
+                        },
+                        "default_value": [
+                            "center-center"
+                        ],
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "ui": 0,
+                        "ajax": 0,
+                        "placeholder": "",
+                        "disabled": 0,
+                        "readonly": 0
+                    },
+                    {
+                        "key": "field_5a9850f1560de",
+                        "label": "Customize",
+                        "name": "custom_content_enabled",
+                        "type": "true_false",
+                        "instructions": "Toggle custom content fields.",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "message": "",
+                        "default_value": 0
+                    },
+                    {
+                        "key": "field_5a9857a7519a1",
+                        "label": "Image",
+                        "name": "image",
+                        "type": "image",
+                        "instructions": "Insert an image. This image will overwrite default images for pages, posts, products, categories.",
+                        "required": "",
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a9850f1560de",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "return_format": "url",
+                        "preview_size": "medium",
+                        "library": "all",
+                        "min_width": "",
+                        "min_height": "",
+                        "min_size": "",
+                        "max_width": "",
+                        "max_height": "",
+                        "max_size": "",
+                        "mime_types": ""
+                    },
+                    {
+                        "key": "field_5a9857d6519a2",
+                        "label": "Title",
+                        "name": "title",
+                        "type": "text",
+                        "instructions": "Insert a title. This content will overwrite titles of items like posts, pages, products, categories.",
+                        "required": "",
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a9850f1560de",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": 300,
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_5a9857f9a0432",
+                        "label": "Subtitle",
+                        "name": "subtitle",
+                        "type": "wysiwyg",
+                        "instructions": "Insert a subtitle.",
+                        "required": "",
+                        "conditional_logic": "",
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "tabs": "all",
+                        "toolbar": "basic",
+                        "media_upload": 0
+                    },
+                    {
+                        "key": "field_5a986008cf063",
+                        "label": "Width",
+                        "name": "width",
+                        "type": "number",
+                        "instructions": "Insert the width of the carousel item.",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a9850f1560de",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "33.33",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "min": 10,
+                        "max": 100,
+                        "step": 1,
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_5a98580ba0433",
+                        "label": "Is Highlighted",
+                        "name": "is_highlighted",
+                        "type": "true_false",
+                        "instructions": "Tick to highlight the carousel item.",
+                        "required": "",
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a9850f1560de",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "message": "",
+                        "default_value": 0
+                    },
+                    {
+                        "key": "field_5a985854a0434",
+                        "label": "Url",
+                        "name": "url",
+                        "type": "text",
+                        "instructions": "Insert the url for the carousel item.",
+                        "required": "",
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a9850c0560dd",
+                                    "operator": "==",
+                                    "value": "custom"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": 300,
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_5a985875c8e4f",
+                        "label": "Post Item",
+                        "name": "post_item",
+                        "type": "post_object",
+                        "instructions": "Select the post for this carousel item.",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a9850c0560dd",
+                                    "operator": "==",
+                                    "value": "post"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "post_type": [
+                            "post"
+                        ],
+                        "taxonomy": [],
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "return_format": "object",
+                        "ui": 1
+                    },
+                    {
+                        "key": "field_5a98588dc8e50",
+                        "label": "Page Item",
+                        "name": "page_item",
+                        "type": "post_object",
+                        "instructions": "Select the page for this carousel item.",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a9850c0560dd",
+                                    "operator": "==",
+                                    "value": "page"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "post_type": [
+                            "page"
+                        ],
+                        "taxonomy": [],
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "return_format": "object",
+                        "ui": 1
+                    },
+                    {
+                        "key": "field_5a98589cc8e51",
+                        "label": "Product Item",
+                        "name": "product_item",
+                        "type": "post_object",
+                        "instructions": "Select the product for this carousel item.",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a9850c0560dd",
+                                    "operator": "==",
+                                    "value": "product"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "post_type": [
+                            "product"
+                        ],
+                        "taxonomy": [],
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "return_format": "object",
+                        "ui": 1
+                    },
+                    {
+                        "key": "field_5a9858afc8e52",
+                        "label": "Category Item",
+                        "name": "category_item",
+                        "type": "taxonomy",
+                        "instructions": "Select the category for this carousel item.",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a9850c0560dd",
+                                    "operator": "==",
+                                    "value": "category"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "taxonomy": "product_cat",
+                        "field_type": "select",
+                        "allow_null": 0,
+                        "add_term": 1,
+                        "save_terms": 0,
+                        "load_terms": 0,
+                        "return_format": "id",
+                        "multiple": 0
+                    },
+                    {
+                        "key": "field_5aa54efa57701",
+                        "label": "Button Style",
+                        "name": "button_style",
+                        "type": "select",
+                        "instructions": "Select the button style.",
+                        "required": "",
+                        "conditional_logic": "",
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "choices": {
+                            "default": "Default",
+                            "light": "Light",
+                            "red": "Red",
+                            "yellow": "Yellow",
+                            "orange": "Orange",
+                            "purple": "Purple",
+                            "green": "Green",
+                            "teal": "Teal"
+                        },
+                        "default_value": [
+                            "default"
+                        ],
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "ui": 0,
+                        "ajax": 0,
+                        "placeholder": "",
+                        "disabled": 0,
+                        "readonly": 0
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "templates\/home.php"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": 1,
+        "description": ""
+    },
+    {
+        "key": "group_5a9730b45ac1d",
+        "title": "Home - Grid",
+        "fields": [
+            {
+                "key": "field_5a97dc465d34c",
+                "label": "Title",
+                "name": "grid_title",
+                "type": "text",
+                "instructions": "Insert the title for this grid.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": "",
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_5a97dc5b5d34d",
+                "label": "Subtitle",
+                "name": "grid_subtitle",
+                "type": "wysiwyg",
+                "instructions": "Insert the subtitle for this grid.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "tabs": "all",
+                "toolbar": "basic",
+                "media_upload": 0
+            },
+            {
+                "key": "field_5a9730b46f112",
+                "label": "Items",
+                "name": "grid_items",
+                "type": "repeater",
+                "instructions": "Grid with custom items. ",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "symmetry-grid-items",
+                    "id": ""
+                },
+                "collapsed": "field_5a9731f7fba53",
+                "min": 2,
+                "max": 40,
+                "layout": "row",
+                "button_label": "Add Grid Item",
+                "sub_fields": [
+                    {
+                        "key": "field_5a9731f7fba53",
+                        "label": "Type",
+                        "name": "type",
+                        "type": "select",
+                        "instructions": "Select the type for the grid item.",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": 50,
+                            "class": "",
+                            "id": ""
+                        },
+                        "choices": {
+                            "post": "Post",
+                            "page": "Page",
+                            "product": "Product",
+                            "category": "Product Category",
+                            "custom": "Custom"
+                        },
+                        "default_value": [
+                            "post"
+                        ],
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "ui": 0,
+                        "ajax": 0,
+                        "placeholder": "",
+                        "disabled": 0,
+                        "readonly": 0
+                    },
+                    {
+                        "key": "field_5a9739064c0be",
+                        "label": "Post Item",
+                        "name": "post_item",
+                        "type": "post_object",
+                        "instructions": "Select the post for this item.",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a9731f7fba53",
+                                    "operator": "==",
+                                    "value": "post"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": 50,
+                            "class": "",
+                            "id": ""
+                        },
+                        "post_type": [
+                            "post"
+                        ],
+                        "taxonomy": [],
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "return_format": "object",
+                        "ui": 1
+                    },
+                    {
+                        "key": "field_5a9739894c0bf",
+                        "label": "Page Item",
+                        "name": "page_item",
+                        "type": "post_object",
+                        "instructions": "Select the page for this grid item.",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a9731f7fba53",
+                                    "operator": "==",
+                                    "value": "page"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": 50,
+                            "class": "",
+                            "id": ""
+                        },
+                        "post_type": [
+                            "page"
+                        ],
+                        "taxonomy": [],
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "return_format": "object",
+                        "ui": 1
+                    },
+                    {
+                        "key": "field_5a9739a34c0c0",
+                        "label": "Product Item",
+                        "name": "product_item",
+                        "type": "post_object",
+                        "instructions": "Select the product for this grid item.",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a9731f7fba53",
+                                    "operator": "==",
+                                    "value": "product"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": 50,
+                            "class": "",
+                            "id": ""
+                        },
+                        "post_type": [
+                            "product"
+                        ],
+                        "taxonomy": [],
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "return_format": "object",
+                        "ui": 1
+                    },
+                    {
+                        "key": "field_5ab14078b498d",
+                        "label": "Product Category",
+                        "name": "category_item",
+                        "type": "taxonomy",
+                        "instructions": "Select the category for this grid item.",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a9731f7fba53",
+                                    "operator": "==",
+                                    "value": "category"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": 50,
+                            "class": "",
+                            "id": ""
+                        },
+                        "taxonomy": "product_cat",
+                        "field_type": "select",
+                        "allow_null": 0,
+                        "add_term": 0,
+                        "save_terms": 0,
+                        "load_terms": 0,
+                        "return_format": "object",
+                        "multiple": 0
+                    },
+                    {
+                        "key": "field_5ab146deb81da",
+                        "label": "Text Layout",
+                        "name": "layout",
+                        "type": "select",
+                        "instructions": "Select the text layout for this grid item.",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": 50,
+                            "class": "",
+                            "id": ""
+                        },
+                        "choices": {
+                            "left-top": "Left - Top",
+                            "left-center": "Left - Center",
+                            "left-bottom": "Left - Bottom",
+                            "center-top": "Center - Top",
+                            "center-center": "Center - Center",
+                            "center-bottom": "Center - Bottom",
+                            "right-top": "Right - Top",
+                            "right-center": "Right - Center",
+                            "right-bottom": "Right - Bottom"
+                        },
+                        "default_value": [
+                            "center-center"
+                        ],
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "ui": 0,
+                        "ajax": 0,
+                        "placeholder": "",
+                        "disabled": 0,
+                        "readonly": 0
+                    },
+                    {
+                        "key": "field_5ab210ea4d812",
+                        "label": "Text Visibility",
+                        "name": "text_visibility",
+                        "type": "select",
+                        "instructions": "Select text visibility.",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": 50,
+                            "class": "",
+                            "id": ""
+                        },
+                        "choices": {
+                            "visible": "Visible",
+                            "visible-on-hover": "Visible on hover"
+                        },
+                        "default_value": [
+                            "visible"
+                        ],
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "ui": 0,
+                        "ajax": 0,
+                        "placeholder": "",
+                        "disabled": 0,
+                        "readonly": 0
+                    },
+                    {
+                        "key": "field_5ab1247052b15",
+                        "label": "Style",
+                        "name": "style",
+                        "type": "select",
+                        "instructions": "Select style for this item.",
+                        "required": "",
+                        "conditional_logic": "",
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "choices": {
+                            "default": "Default",
+                            "light": "Light",
+                            "red": "Red",
+                            "yellow": "Yellow",
+                            "orange": "Orange",
+                            "purple": "Purple",
+                            "green": "Green",
+                            "teal": "Teal"
+                        },
+                        "default_value": [
+                            "default"
+                        ],
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "ui": 0,
+                        "ajax": 0,
+                        "placeholder": "",
+                        "disabled": 0,
+                        "readonly": 0
+                    },
+                    {
+                        "key": "field_5a973c9af651a",
+                        "label": "Enable Custom Content",
+                        "name": "customize",
+                        "type": "true_false",
+                        "instructions": "Toggle custom content fields.",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "message": "",
+                        "default_value": 0
+                    },
+                    {
+                        "key": "field_5a9730b49b104",
+                        "label": "Custom Title",
+                        "name": "custom_title",
+                        "type": "text",
+                        "instructions": "Insert a title. This content will overwrite titles of items like posts, pages, products, categories.",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a973c9af651a",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": 300,
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_5a9730b49b328",
+                        "label": "Custom Subtitle",
+                        "name": "custom_subtitle",
+                        "type": "wysiwyg",
+                        "instructions": "Insert a custom subtitle.",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a973c9af651a",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "tabs": "all",
+                        "toolbar": "basic",
+                        "media_upload": 0
+                    },
+                    {
+                        "key": "field_5a9730b49aee4",
+                        "label": "Custom Image",
+                        "name": "custom_image",
+                        "type": "image",
+                        "instructions": "Insert a custom image. This image will overwrite default images for pages, posts, products, categories.",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a973c9af651a",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "return_format": "url",
+                        "preview_size": "medium",
+                        "library": "all",
+                        "min_width": "",
+                        "min_height": "",
+                        "min_size": "",
+                        "max_width": "",
+                        "max_height": "",
+                        "max_size": "",
+                        "mime_types": ""
+                    },
+                    {
+                        "key": "field_5a9733b110359",
+                        "label": "Custom Url",
+                        "name": "custom_url",
+                        "type": "text",
+                        "instructions": "Insert custom url for the grid item.",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a973c9af651a",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": 300,
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_5a973d8f7849c",
+                        "label": "Is Highlighted",
+                        "name": "is_highlighted",
+                        "type": "true_false",
+                        "instructions": "Tick to highlight the grid item.",
+                        "required": "",
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a973c9af651a",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "message": "",
+                        "default_value": 0
+                    },
+                    {
+                        "key": "field_5a97598bc0a2d",
+                        "label": "Configure Grid Area",
+                        "name": "configure_grid_area",
+                        "type": "true_false",
+                        "instructions": "Tick to configure the grid area for this grid item.",
+                        "required": "",
+                        "conditional_logic": "",
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "message": "",
+                        "default_value": 0
+                    },
+                    {
+                        "key": "field_5a9759a7c0a2e",
+                        "label": "Row Start",
+                        "name": "row_start",
+                        "type": "number",
+                        "instructions": "Insert the row start index.",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a97598bc0a2d",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": 50,
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "min": 1,
+                        "max": 100,
+                        "step": 1,
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_5a975a1ac0a30",
+                        "label": "Column Start",
+                        "name": "column_start",
+                        "type": "number",
+                        "instructions": "Insert the column start index.",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a97598bc0a2d",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": 50,
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "min": 1,
+                        "max": 100,
+                        "step": 1,
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_5a9759e7c0a2f",
+                        "label": "Row End",
+                        "name": "row_end",
+                        "type": "number",
+                        "instructions": "Insert the row end index.",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a97598bc0a2d",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": 50,
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "min": 1,
+                        "max": 100,
+                        "step": 1,
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_5a975a36c0a31",
+                        "label": "Column End",
+                        "name": "column_end",
+                        "type": "number",
+                        "instructions": "Insert the column end index.",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a97598bc0a2d",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": 50,
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "min": 1,
+                        "max": 100,
+                        "step": 1,
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_5ab153b14150d",
+                        "label": "Configure Frame Size",
+                        "name": "configure_frame_size",
+                        "type": "true_false",
+                        "instructions": "Tick to configure the frame size.",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": 50,
+                            "class": "",
+                            "id": ""
+                        },
+                        "message": "",
+                        "default_value": 0
+                    },
+                    {
+                        "key": "field_5ab153d14150e",
+                        "label": "Frame Width",
+                        "name": "frame_width",
+                        "type": "number",
+                        "instructions": "Insert width for the grid item frame (in percentages).",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5ab153b14150d",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": 50,
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": 100,
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "min": 25,
+                        "max": 100,
+                        "step": "",
+                        "readonly": 0,
+                        "disabled": 0
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "templates\/home.php"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": 1,
+        "description": ""
+    },
+    {
+        "key": "group_5a6cc8bad782e",
+        "title": "Home - Slider",
+        "fields": [
+            {
+                "key": "field_5a9172514e4db",
+                "label": "Effect",
+                "name": "slider_effect",
+                "type": "select",
+                "instructions": "Select the slider effect.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": 50,
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "slide": "Slide",
+                    "fade": "Fade"
+                },
+                "default_value": [
+                    "slide"
+                ],
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": "",
+                "disabled": 0,
+                "readonly": 0
+            },
+            {
+                "key": "field_5a9183a91278e",
+                "label": "Direction",
+                "name": "slider_direction",
+                "type": "select",
+                "instructions": "Select the direction of the slider.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": 50,
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "horizontal": "Horizontal",
+                    "vertical": "Vertical"
+                },
+                "default_value": [
+                    "horizontal"
+                ],
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": "",
+                "disabled": 0,
+                "readonly": 0
+            },
+            {
+                "key": "field_5a91721e4e4da",
+                "label": "Speed",
+                "name": "slider_speed",
+                "type": "number",
+                "instructions": "Insert a value for the speed of the slider (in seconds)",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": 50,
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "0.5",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "min": "0.1",
+                "max": 10,
+                "step": "0.1",
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_5a9182ed76dd5",
+                "label": "Delay",
+                "name": "slider_delay",
+                "type": "number",
+                "instructions": "Insert a value for the delay of changing the slider's slide (in seconds)",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": 50,
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 5,
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "min": 1,
+                "max": 60,
+                "step": "0.1",
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_5a952b0f1a3a8",
+                "label": "Pagination",
+                "name": "slider_pagination",
+                "type": "true_false",
+                "instructions": "Toggle slider pagination.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50%",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0
+            },
+            {
+                "key": "field_5a952b381a3a9",
+                "label": "Navigation",
+                "name": "slider_navigation",
+                "type": "true_false",
+                "instructions": "Toggle slider navigation.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50%",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0
+            },
+            {
+                "key": "field_5a6cc8c070c93",
+                "label": "Items",
+                "name": "slider_items",
+                "type": "repeater",
+                "instructions": "Slider, containing slides with images and text.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "collapsed": "field_5a6cc9f307d0d",
+                "min": 1,
+                "max": 12,
+                "layout": "row",
+                "button_label": "Add Slide",
+                "sub_fields": [
+                    {
+                        "key": "field_5a6cc9f307d0d",
+                        "label": "Image",
+                        "name": "image",
+                        "type": "image",
+                        "instructions": "Select slide image.",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "return_format": "url",
+                        "preview_size": "medium",
+                        "library": "all",
+                        "min_width": "",
+                        "min_height": "",
+                        "min_size": "",
+                        "max_width": "",
+                        "max_height": "",
+                        "max_size": "",
+                        "mime_types": ""
+                    },
+                    {
+                        "key": "field_5a6cca2b07d0e",
+                        "label": "Text",
+                        "name": "text",
+                        "type": "wysiwyg",
+                        "instructions": "Insert slide text.",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "tabs": "all",
+                        "toolbar": "basic",
+                        "media_upload": 0
+                    },
+                    {
+                        "key": "field_5a6cca5607d0f",
+                        "label": "Text Layout",
+                        "name": "text_layout",
+                        "type": "select",
+                        "instructions": "Select text layout.",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "choices": {
+                            "left-top": "Left - Top",
+                            "left-center": "Left - Center",
+                            "left-bottom": "Left - Bottom",
+                            "center-top": "Center - Top",
+                            "center-center": "Center - Center",
+                            "center-bottom": "Center - Bottom",
+                            "right-top": "Right - Top",
+                            "right-center": "Right - Center",
+                            "right-bottom": "Right - Bottom"
+                        },
+                        "default_value": [
+                            "center-center"
+                        ],
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "ui": 0,
+                        "ajax": 0,
+                        "placeholder": "",
+                        "disabled": 0,
+                        "readonly": 0
+                    },
+                    {
+                        "key": "field_5a956c7b1b95b",
+                        "label": "Button Enabled",
+                        "name": "button_enabled",
+                        "type": "true_false",
+                        "instructions": "Toggle button functionality.",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "25%",
+                            "class": "",
+                            "id": ""
+                        },
+                        "message": "",
+                        "default_value": 0
+                    },
+                    {
+                        "key": "field_5a956ccf1b95c",
+                        "label": "Button Text",
+                        "name": "button_text",
+                        "type": "text",
+                        "instructions": "Insert text for the button.",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a956c7b1b95b",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "25%",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": 100,
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_5a956cfb1b95d",
+                        "label": "Button Url",
+                        "name": "button_url",
+                        "type": "text",
+                        "instructions": "Insert url for the button",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a956c7b1b95b",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "25%",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": "",
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_5a956e8994af0",
+                        "label": "Button Style",
+                        "name": "button_style",
+                        "type": "select",
+                        "instructions": "Select style for the button.",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a956c7b1b95b",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "25%",
+                            "class": "",
+                            "id": ""
+                        },
+                        "choices": {
+                            "default": "Default",
+                            "light": "Light",
+                            "red": "Red",
+                            "yellow": "Yellow",
+                            "orange": "Orange",
+                            "purple": "Purple",
+                            "green": "Green",
+                            "teal": "Teal"
+                        },
+                        "default_value": [
+                            "default"
+                        ],
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "ui": 0,
+                        "ajax": 0,
+                        "placeholder": "",
+                        "disabled": 0,
+                        "readonly": 0
+                    },
+                    {
+                        "key": "field_5a95a49d6256e",
+                        "label": "Configure Frame Size",
+                        "name": "configure_frame_size",
+                        "type": "true_false",
+                        "instructions": "Toggle options for frame size.",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "33.33%",
+                            "class": "",
+                            "id": ""
+                        },
+                        "message": "",
+                        "default_value": 0
+                    },
+                    {
+                        "key": "field_5a958c8562604",
+                        "label": "Frame Width",
+                        "name": "frame_width",
+                        "type": "number",
+                        "instructions": "Insert width for the slider frame (in percentages)",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a95a49d6256e",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "33.33%",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": 75,
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "min": 25,
+                        "max": 100,
+                        "step": 1,
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_5ab15c66148b8",
+                        "label": "Frame Height",
+                        "name": "frame_height",
+                        "type": "number",
+                        "instructions": "Insert height for the slider frame (in percentages)",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_5a95a49d6256e",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": 75,
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "min": 25,
+                        "max": 100,
+                        "step": "",
+                        "readonly": 0,
+                        "disabled": 0
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "templates\/home.php"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": 1,
+        "description": ""
+    }
+]
