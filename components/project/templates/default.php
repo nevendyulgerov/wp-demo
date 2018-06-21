@@ -43,6 +43,7 @@ $isWithinSameYear = $startDateTime->format('Y') === $endDateTime->format('Y');
 
   <div class="main-content">
     <div class="thumbnail">
+      <div class="thumbnail-overlay"></div>
       <img src="<?php echo Helper::getFeaturedImage($id); ?>" alt="project-thumbnail">
     </div>
 

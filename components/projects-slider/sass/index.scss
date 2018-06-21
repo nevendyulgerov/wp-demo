@@ -31,6 +31,15 @@
           }
 
           .main-content {
+            .thumbnail {
+              opacity: 1;
+              transition: $transition-fast;
+
+              .thumbnail-overlay {
+                opacity: 0;
+                transition: $transition-fast;
+              }
+            }
             .title {
               h2 {
                 opacity: 1;
@@ -127,7 +136,7 @@
 
           .main-content {
             .thumbnail {
-              margin: -116px 0 0 0;
+              margin: -194px 0 0 0;
             }
           }
         }

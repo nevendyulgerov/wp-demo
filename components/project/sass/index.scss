@@ -112,6 +112,7 @@
     flex-direction: column;
 
     .thumbnail {
+      position: relative;
       width: 720px;
       margin: -200px 0 0 0;
       transition: $transition-fast;
@@ -121,6 +122,17 @@
       }
 
       &:hover {
+        transition: $transition-fast;
+      }
+
+      .thumbnail-overlay {
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.10);
         transition: $transition-fast;
       }
 
